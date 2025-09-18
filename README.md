@@ -1,4 +1,6 @@
-Passo 1: Criação das Tabelas no MYSQL e do script yahoo_scraper.py para a coleta contínua de dados (hourly).
+18/09/2025 - Início do projeto.
+
+Passo 1: Criação da DW no MYSQL, elaboração do docker-compose e do script scraper **yahoo_scraper.py** para a coleta contínua (hourly) dos dados transacionais de Cryprocurrency da API pública do **Yahoo Finance**. Considerei o **investing.com** mas como eles não possuem API pública, diferente do Yahoo Finance.
 
 Passo 2: Popular a tabela dim_time_hourly com o script populate_dim_time.py, para facilitar análises temporais.
 
@@ -29,4 +31,6 @@ Após corrigir diversos erros no script os dados finalmente chegaram no DW nos f
 
 <img width="871" height="394" alt="image" src="https://github.com/user-attachments/assets/df1f7459-9f6e-497f-bf07-83eea0f9c3c1" />
 
+Problema: deixar o PC ligado 24/7 gastará muitos recursos.
+Solução: Subir uma VM na nuvem (provavelmente AWS). Será feito amanhã, com calma.
 
