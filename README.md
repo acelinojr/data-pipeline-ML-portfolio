@@ -31,7 +31,4 @@ Após corrigir diversos erros no script os dados finalmente chegaram no DW nos f
 
 <img width="871" height="394" alt="image" src="https://github.com/user-attachments/assets/df1f7459-9f6e-497f-bf07-83eea0f9c3c1" />
 
-Problema: deixar o PC ligado 24/7 gastará muitos recursos.
-
-Solução: Subir uma VM na nuvem (provavelmente AWS). Será feito amanhã, com calma.
 
