@@ -17,7 +17,7 @@ Solução: Uso das funções - safe_float() e safe_int() - para tratar NaN e val
 3. BTC (Bitcoin) era a única cryptocurrency que estava sendo coletada pelo scraper.
 Solução: alteração no docker-compose para incluir mais bitcoins: **TICKERS=BTC-USD,ETH-USD,XRP-USD...etc.**
 
-Diversas análises de estrutura e de logs foram feitas no scraper usando prompt engineering; testes rápidos com um run_once foram muito úteis para encontrar problemas:
+Diversas análises de estrutura e de logs foram feitas no script scraper, usando prompt engineering; testes rápidos com um run_once foram muito úteis para encontrar problemas:
 
 ```from yahoo_scraper import run_once
 
