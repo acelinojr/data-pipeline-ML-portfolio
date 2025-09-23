@@ -66,7 +66,7 @@ Observabilidade e SRE: Métricas de saúde e desempenho são enviadas ao Prometh
 
 
 
-Este projeto não é apenas sobre coletar dados, mas sobre construir um sistema confiável, monitorável e que segue as melhores práticas da indústria.
+Este projeto não é apenas sobre coletar dados, mas é também sobre construir um **sistema confiável**, **monitorável** e que segue as melhores práticas da indústria.
 
 **Arquitetura**
 
