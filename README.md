@@ -45,7 +45,7 @@ flowchart LR
     E --> F[Grafana Dashboard]
 ```
 
-Coleta Robusta: Um scraper em Python, resiliente a falhas, coleta dados de cotações da API do Yahoo Finance.
+Coleta Robusta: Um scraper em Python, resiliente a falhas, coleta dados de cotações de Criptomoedas da API do Yahoo Finance.
 
 Armazenamento Estruturado: Os dados são persistidos em um Data Warehouse dimensional modelado em MySQL, pronto para análises.
 
