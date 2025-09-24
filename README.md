@@ -54,6 +54,9 @@ flowchart LR
 
 **Coleta Robusta**: Um scraper em Python, resiliente a falhas, coleta dados de cotações de Criptomoedas da API do Yahoo Finance.
 
+<img width="794" height="133" alt="image" src="https://github.com/user-attachments/assets/bdf8a4dc-395d-4c50-aab4-2ccbf1105e2c" />
+
+
 
 **Armazenamento Estruturado**: Os dados são persistidos em um Data Warehouse dimensional modelado em MySQL, pronto para análises.
 
