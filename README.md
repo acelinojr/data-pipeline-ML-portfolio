@@ -73,10 +73,19 @@ flowchart LR
 
 
 
-## Observabilidade e SRE: Métricas de saúde e desempenho do Scraper são enviadas ao Prometheus e visualizadas no Grafana, incluindo um dashboard de SLO (Service Level Objective) para monitorar a confiabilidade do pipeline.
+## Observabilidade e SRE: Métricas de saúde e desempenho do Scraper são enviadas ao Prometheus, onde os cálculos das métricas mais importantes já são feitos através do recording-rules do prometheus, com base em SLOs pré-determinados e, por fim, as métricas mais relevantes são visualizadas no Grafana, incluindo um dashboard de SLO (Service Level Objective) para monitorar a confiabilidade do pipeline.
 
+<img width="1410" height="455" alt="image" src="https://github.com/user-attachments/assets/54f6c868-304e-4443-981a-99b9296300f7" />
 <img width="1447" height="952" alt="image" src="https://github.com/user-attachments/assets/571d7ada-6fea-4151-961b-8a589f871848" />
 <img width="1447" height="941" alt="image" src="https://github.com/user-attachments/assets/f198fcd4-869e-47c7-83d9-48738b8bab54" />
+
+## Alertas baseados em certos thresholds de performance/disponibilidade também foram feitos usando o Alertmanager, onde a configuração dos requisitos dos alertas é feita no **alert.rules.yaml**. Em um ambiente Cloud, como AWS ou Google Cloud, processos de auto remediações seriam realizados de acordo com o nível de urgência, este já pré-determinado, em cada alerta. Caso as auto remediações não fossem suficientes, só então um DevOps de plantão iria intervir para analisar e remediar o problema.
+
+<img width="1439" height="666" alt="image" src="https://github.com/user-attachments/assets/7df7bd02-8eb0-427e-8159-7b0bcdc05947" />
+
+
+**Obs**: A latência reportada é do ciclo completo do scraping (vários tickers em sequência) e não por requisições individuais. Nenhum impacto negativo foi observado na coleta dos dados. Ainda estou avaliando se modifico o scraper para refletir melhor a latência real do processo, mas, no momento, isso é de baixa prioridade.
+
 
 
 
