@@ -84,7 +84,7 @@ flowchart LR
 <img width="1439" height="666" alt="image" src="https://github.com/user-attachments/assets/7df7bd02-8eb0-427e-8159-7b0bcdc05947" />
 
 
-**Obs**: A latência reportada é do ciclo completo do scraping (vários tickers em sequência) e não por requisições individuais. Nenhum impacto negativo foi observado na coleta dos dados. Ainda estou avaliando se modifico o scraper para refletir melhor a latência real do processo, mas, no momento, isso é de baixa prioridade.
+**Obs**: A latência p99 reportada é do ciclo completo do scraping (vários tickers em sequência) e não por requisições individuais. Nenhum impacto negativo foi observado na coleta dos dados. Ainda estou avaliando se modifico o scraper para refletir melhor a latência real do processo, mas, no momento, isso é de baixa prioridade.
 
 
 
