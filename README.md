@@ -31,9 +31,9 @@ Neste projeto, estarei demonstrando a extração dos dados de Criptomoedas de um
 
 **Orquestração	Apache NiFi**	- Gerenciamento do fluxo de métricas do scraper para o Prometheus.
 
-**Monitoramento	Prometheus** - Coleta e armazenamento de métricas de séries temporais.
+**Monitoramento	Prometheus** - Coleta e armazenamento de métricas de séries temporais do Scraper.
 
-**Visualização** - Grafana	Criação de dashboards interativos para monitoramento.
+**Visualização no Grafana** -	Criação de dashboards interativos para monitoramento.
 
 **Containerização	Docker & Docker Compose**	- Orquestração de todo o ambiente de forma isolada e reproduzível.
 
