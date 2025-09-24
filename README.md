@@ -52,13 +52,13 @@ flowchart LR
 ```
 
 
-**Coleta Robusta**: Um scraper em Python, resiliente a falhas, coleta dados de cotações de Criptomoedas da API do Yahoo Finance.
+## Coleta Robusta: Um scraper em Python, resiliente a falhas, coleta dados de cotações de Criptomoedas da API do Yahoo Finance.
 
 <img width="794" height="133" alt="image" src="https://github.com/user-attachments/assets/bdf8a4dc-395d-4c50-aab4-2ccbf1105e2c" />
 
 
 
-**Armazenamento Estruturado**: Os dados são persistidos em um Data Warehouse dimensional modelado em MySQL, pronto para análises.
+## Armazenamento Estruturado: Os dados são persistidos em um Data Warehouse dimensional modelado em MySQL, pronto para análises.
 
 
 <img width="248" height="189" alt="image" src="https://github.com/user-attachments/assets/38ec026d-75cf-4eaa-bd54-099fe40cf089" />
@@ -67,13 +67,13 @@ flowchart LR
 
 
 
-**Orquestração de Dados**: O Apache NiFi gerencia o fluxo de metadados e métricas geradas pelo scraper.
+## Orquestração de Dados: O Apache NiFi gerencia o fluxo de metadados e métricas geradas pelo scraper.
 
 <img width="1175" height="561" alt="image" src="https://github.com/user-attachments/assets/541bbcbb-41f3-44ce-a748-c2dd5a90cfb4" />
 
 
 
-**Observabilidade e SRE**: Métricas de saúde e desempenho são enviadas ao Prometheus e visualizadas no Grafana, incluindo um dashboard de SLO (Service Level Objective) para monitorar a confiabilidade do pipeline.
+## Observabilidade e SRE: Métricas de saúde e desempenho do Scraper são enviadas ao Prometheus e visualizadas no Grafana, incluindo um dashboard de SLO (Service Level Objective) para monitorar a confiabilidade do pipeline.
 
 <img width="1447" height="952" alt="image" src="https://github.com/user-attachments/assets/571d7ada-6fea-4151-961b-8a589f871848" />
 <img width="1447" height="941" alt="image" src="https://github.com/user-attachments/assets/f198fcd4-869e-47c7-83d9-48738b8bab54" />
