@@ -96,34 +96,6 @@ Este projeto não é apenas sobre coletar dados, mas é também sobre construir 
 
 O sistema é dividido em duas vias principais: o fluxo de dados (coleta e armazenamento) e o fluxo de métricas (monitoramento e observabilidade).
 
-Code snippet
-
-graph TD
-    subgraph "Fonte de Dados Externa"
-        A[Yahoo Finance API]
-    end
-
-    subgraph "Aplicação Principal (Docker)"
-        B(Python Scraper) -- Coleta de dados --> A
-        B -- 1. Armazena dados brutos --> C[MySQL Data Warehouse]
-        B -- 2. Envia métricas da execução --> D[Apache NiFi]
-    end
-
-    subgraph "Plataforma de Observabilidade (Docker)"
-        D -- Encaminha métricas --> E[Prometheus]
-        E -- Armazena séries temporais --> E
-        F[Grafana] -- Consulta e visualiza --> E
-    end
-
-    subgraph "Data Warehouse (Docker)"
-        C
-    end
-
-    style B fill:#3498db,stroke:#2980b9,color:#fff
-    style C fill:#f39c12,stroke:#e67e22,color:#fff
-    style D fill:#e74c3c,stroke:#c0392b,color:#fff
-    style E fill:#9b59b6,stroke:#8e44ad,color:#fff
-    style F fill:#2ecc71,stroke:#27ae60,color:#fff
 **Scraper (Python)**: Executa periodicamente para buscar os dados mais recentes.
 
 **MySQL**: Atua como Data Warehouse, armazenando os dados brutos e, posteriormente, tabelas agregadas (dimensional).
