@@ -1,0 +1,21 @@
+groups:
+- name: sli_alerts
+  rules:
+  - alert: SLIFreshnessDegraded
+    expr: sli:freshness:ratio:24h_total < 0.95
+    for: 10m
+    labels:
+      severity: page
+    annotations:
+      summary: "Freshness SLI abaixo do threshold ({{ $value }})"
+      description: "sli:freshness:ratio:24h_total está abaixo de 0.95 por mais de 10m."
+
+  - alert: SLIFreshnessBurnRateHigh
+    # example: alert when error budget consumed > 50% in last 1h
+    expr: (1 - sli:freshness:ratio:24h_total) / (1 - 0.99) > 0.5
+    for: 30m
+    labels:
+      severity: page
+    annotations:
+      summary: "Burn rate alto do error budget para freshness"
+      description: "Consumiu >50% do error budget (SLO target 99%)"

@@ -1,0 +1,32 @@
+# - SLO 99.99%
+groups:
+- name: nifi_scraper_recordings
+  query_offset: 1m   # Remove if errors continue (handles delays but may contribute to timing issues)
+  interval: 30s
+  limit: 1000
+  rules:
+
+  # Taxa de records por segundo (agregada por flow, só sucessos)
+  - record: nifi:records:rate
+    expr: sum(rate(nifi_records_total{status="success"}[10m])) by (flow_name)
+
+  # Taxa de erros por segundo (agregada por flow + tipo)
+  - record: nifi:errors:rate
+    expr: sum(rate(nifi_errors_total[10m])) by (flow_name, error_type)
+
+  # Razão de erro (erro/total) por flow (alinhado com SLO)
+  - record: nifi:error_ratio
+    expr: sum(rate(nifi_errors_total[10m])) by (flow_name)
+          / (sum(rate(nifi_records_total{status="success"}[10m])) by (flow_name) or vector(1))
+
+  # P99 de latência (segundos) por flow
+  - record: nifi:latency:p99_seconds
+    expr: histogram_quantile(0.99, sum(rate(nifi_flow_latency_seconds_bucket[10m])) by (le, flow_name))
+
+  # Contagem de registros processados nos últimos 10m (detectar ausência)
+  - record: nifi:records:count_10m
+    expr: sum(increase(nifi_records_total{status="success"}[10m])) by (flow_name)
+
+  # Contagem de transações / requisições nos últimos 10m
+  - record: api:transactions:count_10m
+    expr: sum(increase(api_transactions_total{status="success"}[10m])) by (endpoint, region)

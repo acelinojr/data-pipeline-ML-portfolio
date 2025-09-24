@@ -1,0 +1,5 @@
+yfinance
+pandas
+mysql-connector-python
+prometheus-client
+flask
