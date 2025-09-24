@@ -58,7 +58,7 @@ flowchart LR
 
 
 
-## Armazenamento Estruturado: Os dados são persistidos em um Data Warehouse dimensional modelado em MySQL, pronto para análises.
+## Armazenamento Estruturado: Os dados são enviados para a tabela **raw_table** no Data Warehouse dimensional, modelado no MySQL, prontos para análises.
 
 
 <img width="248" height="189" alt="image" src="https://github.com/user-attachments/assets/38ec026d-75cf-4eaa-bd54-099fe40cf089" />
