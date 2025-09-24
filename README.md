@@ -25,13 +25,19 @@ Neste projeto, estarei demonstrando a extração dos dados de Criptomoedas de um
   </a>
 </p>
 
-Linguagem	Python 3.10+	Desenvolvimento do scraper e scripts de automação.
-Banco de Dados	MySQL 8.0	Data Warehouse para armazenamento dos dados coletados.
-Orquestração	Apache NiFi	Gerenciamento do fluxo de métricas do scraper para o Prometheus.
-Monitoramento	Prometheus	Coleta e armazenamento de métricas de séries temporais.
-Visualização	Grafana	Criação de dashboards interativos para monitoramento.
-Containerização	Docker & Docker Compose	Orquestração de todo o ambiente de forma isolada e reproduzível.
-S.O. Host	Windows (via WSL2)	Ambiente de desenvolvimento principal.
+**Linguagem	Python 3.10+** -	Desenvolvimento do scraper e scripts de exploração e de testes.
+
+**Banco de Dados MySQL 8.0** - Data Warehouse para armazenamento dos dados coletados.
+
+**Orquestração	Apache NiFi**	- Gerenciamento do fluxo de métricas do scraper para o Prometheus.
+
+**Monitoramento	Prometheus** - Coleta e armazenamento de métricas de séries temporais.
+
+**Visualização** - Grafana	Criação de dashboards interativos para monitoramento.
+
+**Containerização	Docker & Docker Compose**	- Orquestração de todo o ambiente de forma isolada e reproduzível.
+
+**S.O. Host	Windows (via WSL2)**	- Ambiente de desenvolvimento principal.
 
 
 Este projeto implementa uma solução completa que simula um ambiente de produção para ingestão de dados financeiros. O objetivo é demonstrar competências práticas em todo o ciclo de vida dos dados:
