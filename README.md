@@ -63,9 +63,11 @@ flowchart LR
 <img width="736" height="317" alt="image" src="https://github.com/user-attachments/assets/bf876699-9d23-46b2-ba6f-0de8d6751a84" />
 
 
+
 **Orquestração de Dados**: O Apache NiFi gerencia o fluxo de metadados e métricas geradas pelo scraper.
 
 <img width="1175" height="561" alt="image" src="https://github.com/user-attachments/assets/541bbcbb-41f3-44ce-a748-c2dd5a90cfb4" />
+
 
 
 **Observabilidade e SRE**: Métricas de saúde e desempenho são enviadas ao Prometheus e visualizadas no Grafana, incluindo um dashboard de SLO (Service Level Objective) para monitorar a confiabilidade do pipeline.
@@ -77,7 +79,8 @@ flowchart LR
 
 Este projeto não é apenas sobre coletar dados, mas é também sobre construir um **sistema confiável**, **monitorável** e que segue as melhores práticas da indústria.
 
-**Arquitetura**
+
+## Arquitetura
 
 O sistema é dividido em duas vias principais: o fluxo de dados (coleta e armazenamento) e o fluxo de métricas (monitoramento e observabilidade).
 
@@ -123,7 +126,7 @@ Destaque: Boas Práticas de Coleta e Tratamento (ACID)
 
 Uma das principais preocupações em pipelines de dados é garantir a integridade e a confiabilidade. Este projeto implementa várias práticas para isso, alinhadas aos princípios ACID e de idempotência.
 
-**Atomicidade**: Transações "Tudo ou Nada"
+## Atomicidade: Transações "Tudo ou Nada"
 
 Para garantir que a carga de um lote de dados seja atômica (ou tudo é gravado, ou nada é), o scraper utiliza transações explícitas no banco de dados.
 
