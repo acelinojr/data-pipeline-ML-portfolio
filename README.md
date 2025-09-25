@@ -52,18 +52,59 @@ flowchart LR
 ```
 
 
-## Coleta Robusta: Um scraper em Python, resiliente a falhas, coleta dados de cotações de Criptomoedas da API do Yahoo Finance.
+## Coleta: Um scraper em Python, resiliente a falhas, coleta dados de cotações de Criptomoedas da API do Yahoo Finance.
 
 <img width="794" height="133" alt="image" src="https://github.com/user-attachments/assets/bdf8a4dc-395d-4c50-aab4-2ccbf1105e2c" />
 
 
 
-## Armazenamento Estruturado: Os dados são enviados para a tabela **raw_crypto** no Data Warehouse dimensional, modelado no MySQL, prontos para análises.
+## Armazenamento Estruturado: Os dados são enviados para a tabela **raw_crypto** na Data Warehouse dimensional, modelado no MySQL, prontos para análises.
 
 
 <img width="248" height="189" alt="image" src="https://github.com/user-attachments/assets/38ec026d-75cf-4eaa-bd54-099fe40cf089" />
 
 <img width="662" height="247" alt="image" src="https://github.com/user-attachments/assets/9d45df34-f8d2-4515-867d-a42d9d854eef" />
+
+**Query da consulta** - gera um ranking de símbolos (symbol) baseado em três dimensões: liquidez (volume médio), qualidade (percentual de registros válidos) e freshness (última coleta). Também seleciona as melhores criptomoedas que atendem a critérios mínimos de qualidade para formar uma lista priorizada (todas).
+```
+WITH stats AS (
+  SELECT
+    symbol,
+    COUNT(*) AS cnt_obs,
+    MAX(`timestamp`) AS last_ts,
+    ROUND(SUM(is_valid=1)/COUNT(*)*100,4) AS pct_valid,
+    ROUND(SUM(price_usd = 0)/COUNT(*)*100,4) AS pct_zero,
+    AVG(volume_24h_usd) AS avg_volume,
+    STDDEV_SAMP(price_usd) AS price_stddev
+  FROM raw_crypto
+  GROUP BY symbol
+),
+ranks AS (
+  SELECT
+    *,
+    PERCENT_RANK() OVER (ORDER BY avg_volume) AS vol_pr,    -- 0..1, maior volume => mais próximo de 1
+    PERCENT_RANK() OVER (ORDER BY pct_valid) AS valid_pr,  -- 0..1, maior pct_valid => melhor
+    PERCENT_RANK() OVER (ORDER BY last_ts) AS fresh_pr     -- 0..1, mais recente => melhor
+  FROM stats
+)
+SELECT
+  symbol,
+  cnt_obs,
+  last_ts,
+  pct_valid,
+  pct_zero,
+  ROUND(avg_volume,2) AS avg_volume,
+  ROUND(price_stddev,8) AS price_stddev,
+  ROUND((0.60*vol_pr + 0.30*valid_pr + 0.10*fresh_pr),4) AS score
+FROM ranks
+WHERE
+  pct_valid >= 90          -- exige pelo menos 90% de registros válidos
+  AND pct_zero <= 5        -- no máximo 5% de preços iguais a 0
+  AND cnt_obs >= 50        -- mínimo de 50 históricos (apenas para demonstração, não é relevante para o dataset atual (13 cryptomoedas)
+  AND last_ts >= (NOW() - INTERVAL 24 HOUR) -- coleta recente (24h)
+ORDER BY score DESC
+LIMIT 100;
+```
 
 
 
