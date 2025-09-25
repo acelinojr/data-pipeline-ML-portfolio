@@ -65,7 +65,7 @@ flowchart LR
 
 <img width="662" height="247" alt="image" src="https://github.com/user-attachments/assets/9d45df34-f8d2-4515-867d-a42d9d854eef" />
 
-**Query da consulta** - gera um ranking de símbolos (symbol) baseado em três dimensões: liquidez (volume médio), qualidade (percentual de registros válidos) e freshness (última coleta). Também seleciona as melhores criptomoedas que atendem a critérios mínimos de qualidade para formar uma lista priorizada (todas).
+**Query da consulta** - gera um ranking de símbolos (symbol) baseado em três dimensões: liquidez (volume médio), qualidade (percentual de registros válidos) e freshness (última coleta). Também seleciona as melhores criptomoedas que atendem aos critérios mínimos de qualidade para formar uma lista priorizada (todas).
 ```
 WITH stats AS (
   SELECT
