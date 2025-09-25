@@ -115,7 +115,7 @@ LIMIT 100;
 
 
 
-## Observabilidade e SRE: Métricas de saúde e desempenho do Scraper são enviadas ao Prometheus, onde os cálculos das métricas mais importantes já são feitos através do recording-rules.yaml do prometheus, com base em SLOs pré-determinados e, por fim, as métricas mais relevantes são visualizadas no Grafana, incluindo um dashboard de SLO (Service Level Objective) para monitorar a confiabilidade do pipeline.
+## Observabilidade e SRE (Site Reliability Engineering): Métricas de saúde e desempenho do Scraper são enviadas ao Prometheus, onde os cálculos das métricas mais importantes já são feitos através do recording-rules.yaml do prometheus, com base em SLOs pré-determinados e, por fim, as métricas mais relevantes são visualizadas no Grafana, incluindo um dashboard de SLO (Service Level Objective) para monitorar a confiabilidade do pipeline.
 
 <img width="1410" height="455" alt="image" src="https://github.com/user-attachments/assets/54f6c868-304e-4443-981a-99b9296300f7" />
 <img width="1447" height="952" alt="image" src="https://github.com/user-attachments/assets/571d7ada-6fea-4151-961b-8a589f871848" />
