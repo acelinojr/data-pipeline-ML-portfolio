@@ -96,15 +96,15 @@ Este projeto não é apenas sobre coletar dados, mas é também sobre construir 
 
 O sistema é dividido em duas vias principais: o fluxo de dados (coleta e armazenamento) e o fluxo de métricas (monitoramento e observabilidade).
 
-**Scraper (Python)**: Executa periodicamente para buscar os dados mais recentes.
+**Scraper (Python)**: O yahoo_scraper.py é executado periodicamente para buscar os dados.
 
-**MySQL**: Atua como Data Warehouse, armazenando os dados brutos e, posteriormente, tabelas agregadas (dimensional).
+**MySQL**: Atua como Data Warehouse, armazenando os dados brutos e, posteriormente, tabelas agregadas (Star Schema).
 
-**Apache NiFi**: Recebe um payload JSON do scraper via uma requisição HTTP a cada execução, contendo métricas como latência, número de registros e status.
+**Apache NiFi**: Recebe um payload JSON do scraper via uma requisição HTTP a cada execução (dois segundos), contendo métricas como latência, número de registros e status.
 
-**Prometheus**: Configurado para extrair as métricas do NiFi (ou diretamente de um endpoint do scraper) e armazená-las como séries temporais.
+**Prometheus**: Configurado para extrair as métricas do NiFi e armazená-las como séries temporais. Seria possível também mandar as métricas direto do scraper, mas um dos objetivos desse projeto é demonstrar a construção de um pipeline de dados completo.
 
-**Grafana**: Conecta-se ao Prometheus como fonte de dados para exibir os dashboards de monitoramento.
+**Grafana**: Conecta o Prometheus como fonte de dados, para exibir dashboards de métricas relevantes.
 
 Destaque: Boas Práticas de Coleta e Tratamento (ACID)
 
@@ -130,13 +130,13 @@ try:
 except Error as e:
     conn.rollback() # Desfaz tudo em caso de erro
 ```
-Consistência e Durabilidade: Integridade dos Dados
+## Consistência e Durabilidade: Integridade dos Dados
 
-A consistência é garantida tanto na aplicação quanto no banco de dados, que por sua vez assegura a durabilidade.
+A consistência é garantida tanto na aplicação quanto no banco de dados que, por sua vez, assegura a durabilidade.
 
 No Schema do MySQL (raw_crypto):
 
-O uso de **ENGINE=InnoDB** é fundamental, pois é o motor de armazenamento padrão do MySQL que suporta transações ACID.
+O uso de **ENGINE=InnoDB** é fundamental, pois este é o motor de armazenamento padrão do MySQL, que suporta transações ACID.
 
 Tipos de dados rigorosos como DECIMAL(20,8) para preços e DATETIME(6) para timestamps evitam erros de arredondamento e garantem a precisão.
 
@@ -157,7 +157,7 @@ Idempotência: Execuções Repetidas Sem Efeitos Colaterais
 ```
 Em pipelines de dados, é crucial que uma tarefa possa ser reexecutada sem duplicar dados.
 
-No Scraper: A função truncate_to_hour normaliza o timestamp, garantindo que coletas múltiplas dentro da mesma hora resultem na mesma chave temporal.
+No Scraper: A função truncate_to_hour normaliza o timestamp, garantindo que múltiplas coletas dentro da mesma hora resultem na mesma chave temporal.
 
 No MySQL: A instrução ON DUPLICATE KEY UPDATE é a chave para a idempotência. Se um registro com a mesma chave única (symbol, timestamp) já existir, em vez de gerar um erro ou duplicar, ele simplesmente atualiza os valores. Isso torna o pipeline seguro para reexecuções.
 
